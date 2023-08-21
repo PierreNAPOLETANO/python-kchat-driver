@@ -121,12 +121,8 @@ class Client:
             params = {}
         if data is None:
             data = {}
-        if basepath:
-            url = "{scheme:s}://{url:s}:{port:d}{basepath:s}".format(
-                scheme=self._options["scheme"], url=self._options["url"], port=self._options["port"], basepath=basepath
-            )
-        else:
-            url = self.url
+
+        url = "{scheme:s}://{url:s}:{port:d}{basepath:s}".format(scheme=self._options["scheme"], url=self._options["url"], port=self._options["port"], basepath=basepath) if basepath else self.url
         method = method.lower()
         request = requests.get
         if method == "post":
